@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Contador de Clicks | Colegio Bolívar</title>
 
     <style>
@@ -26,9 +27,9 @@
             background: rgba(12, 24, 52, 0.95);
             border: 1px solid rgba(0, 229, 255, 0.25);
             border-radius: 24px;
-            padding: 45px 30px;
+            padding: 40px 30px;
             text-align: center;
-            max-width: 420px;
+            max-width: 440px;
             width: 100%;
             box-shadow:
                 0 0 25px rgba(0, 229, 255, 0.08),
@@ -53,14 +54,45 @@
             color: #ffffff;
             font-size: 28px;
             margin: 0 0 12px;
-            letter-spacing: -0.5px;
+            overflow-wrap: anywhere;
         }
 
         .descripcion {
             color: #94a3b8;
             font-size: 14px;
             line-height: 1.6;
-            margin: 0;
+            margin: 0 0 25px;
+        }
+
+        .campo-titulo {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .campo-titulo label {
+            display: block;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .campo-titulo input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #334568;
+            border-radius: 10px;
+            background: #081329;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .campo-titulo input:focus {
+            border-color: #00e5ff;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
         }
 
         #numero {
@@ -68,7 +100,7 @@
             font-weight: 800;
             line-height: 1.2;
             color: #00e5ff;
-            margin: 35px 0;
+            margin: 25px 0;
             text-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
             font-variant-numeric: tabular-nums;
         }
@@ -155,7 +187,7 @@
 
         @media (max-width: 480px) {
             .contador {
-                padding: 35px 22px;
+                padding: 30px 22px;
             }
 
             h1 {
@@ -170,64 +202,109 @@
 </head>
 
 <body>
+
     <main class="contador">
+
         <div class="etiqueta">Event Counter</div>
 
-        <h1>Colegio Bolívar</h1>
+        <h1 id="tituloEvento">Colegio Bolívar</h1>
 
         <p class="descripcion">
             Contador interactivo de clicks<br>
             para eventos escolares
         </p>
 
-        <div id="numero" aria-live="polite" aria-atomic="true">0</div>
+        <!-- Campo para editar el título del evento -->
+        <div class="campo-titulo">
+            <label for="nuevoTitulo">Título del evento</label>
 
+            <input
+                type="text"
+                id="nuevoTitulo"
+                placeholder="Escribe el nombre del evento..."
+                value="Colegio Bolívar"
+                maxlength="100"
+            >
+        </div>
+
+        <!-- Número del contador -->
+        <div
+            id="numero"
+            aria-live="polite"
+            aria-atomic="true"
+        >0</div>
+
+        <!-- Botones -->
         <div class="botones">
-            <button id="sumar" onclick="incrementar()">
+
+            <button id="sumar" type="button">
                 + Registrar click
             </button>
 
-            <button id="reiniciar" onclick="reiniciar()">
+            <button id="reiniciar" type="button">
                 Reiniciar contador
             </button>
+
         </div>
 
-        <p id="mensaje" role="status">¡Listo para comenzar!</p>
+        <p id="mensaje" role="status" aria-live="polite">
+            ¡Listo para comenzar!
+        </p>
 
         <div class="linea"></div>
 
         <div class="pie">Colegio Bolívar · Eventos</div>
+
     </main>
 
     <script>
         let clicks = 0;
 
+        const numero = document.getElementById("numero");
+        const mensaje = document.getElementById("mensaje");
+        const tituloEvento = document.getElementById("tituloEvento");
+        const nuevoTitulo = document.getElementById("nuevoTitulo");
+        const botonSumar = document.getElementById("sumar");
+        const botonReiniciar = document.getElementById("reiniciar");
+
+        // Registrar un click
         function incrementar() {
             clicks++;
             actualizarContador();
         }
 
+        // Reiniciar el contador a cero
         function reiniciar() {
             clicks = 0;
             actualizarContador();
-            document.getElementById("mensaje").textContent =
-                "El contador se ha reiniciado.";
+
+            mensaje.textContent = "El contador se ha reiniciado.";
         }
 
+        // Actualizar el número y el mensaje
         function actualizarContador() {
-            document.getElementById("numero").textContent = clicks;
+            numero.textContent = clicks;
 
             if (clicks === 0) {
-                document.getElementById("mensaje").textContent =
-                    "¡Listo para comenzar!";
+                mensaje.textContent = "¡Listo para comenzar!";
             } else if (clicks === 1) {
-                document.getElementById("mensaje").textContent =
-                    "¡Primer click registrado!";
+                mensaje.textContent = "¡Primer click registrado!";
             } else {
-                document.getElementById("mensaje").textContent =
-                    clicks + " clicks registrados";
+                mensaje.textContent = clicks + " clicks registrados.";
             }
         }
+
+        // Cambiar el título en tiempo real mientras se escribe
+        nuevoTitulo.addEventListener("input", function () {
+            const texto = nuevoTitulo.value.trim();
+
+            tituloEvento.textContent = texto || "Nombre del evento";
+        });
+
+        // Conectar los botones con sus funciones
+        botonSumar.addEventListener("click", incrementar);
+        botonReiniciar.addEventListener("click", reiniciar);
     </script>
+
 </body>
 </html>
