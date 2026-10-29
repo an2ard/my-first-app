@@ -4,205 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Contador de Clicks | Colegio Bolívar</title>
+    <title>Contador de Eventos | Colegio Bolívar</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    <!-- Hoja de estilos externa -->
+    <link rel="stylesheet" href="style.css">
 
-        body {
-            font-family: "Segoe UI", Roboto, Arial, sans-serif;
-            background: linear-gradient(135deg, #050b1e, #0b1735, #10102b);
-            color: #f1f5f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .contador {
-            background: rgba(12, 24, 52, 0.95);
-            border: 1px solid rgba(0, 229, 255, 0.25);
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            max-width: 440px;
-            width: 100%;
-            box-shadow:
-                0 0 25px rgba(0, 229, 255, 0.08),
-                0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .etiqueta {
-            display: inline-block;
-            color: #00e5ff;
-            background: rgba(0, 229, 255, 0.08);
-            border: 1px solid rgba(0, 229, 255, 0.25);
-            border-radius: 20px;
-            padding: 7px 14px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-        }
-
-        h1 {
-            color: #ffffff;
-            font-size: 28px;
-            margin: 0 0 12px;
-            overflow-wrap: anywhere;
-        }
-
-        .descripcion {
-            color: #94a3b8;
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0 0 25px;
-        }
-
-        .campo-titulo {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
-        .campo-titulo label {
-            display: block;
-            color: #cbd5e1;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .campo-titulo input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #334568;
-            border-radius: 10px;
-            background: #081329;
-            color: #ffffff;
-            font-family: inherit;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .campo-titulo input:focus {
-            border-color: #00e5ff;
-            box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
-        }
-
-        #numero {
-            font-size: 88px;
-            font-weight: 800;
-            line-height: 1.2;
-            color: #00e5ff;
-            margin: 25px 0;
-            text-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
-            font-variant-numeric: tabular-nums;
-        }
-
-        .botones {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        button {
-            width: 100%;
-            border: none;
-            border-radius: 12px;
-            padding: 15px 22px;
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.2s ease,
-                        box-shadow 0.2s ease,
-                        background 0.2s ease;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        button:focus-visible {
-            outline: 2px solid white;
-            outline-offset: 4px;
-        }
-
-        #sumar {
-            color: #04111f;
-            background: #00e5ff;
-            box-shadow: 0 0 18px rgba(0, 229, 255, 0.25);
-        }
-
-        #sumar:hover {
-            background: #65f2ff;
-            box-shadow: 0 0 28px rgba(0, 229, 255, 0.45);
-        }
-
-        #reiniciar {
-            color: #e2e8f0;
-            background: #172442;
-            border: 1px solid #334568;
-        }
-
-        #reiniciar:hover {
-            background: #223354;
-        }
-
-        #mensaje {
-            color: #94a3b8;
-            font-size: 13px;
-            margin: 25px 0 0;
-            min-height: 20px;
-        }
-
-        .linea {
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(0, 229, 255, 0.4),
-                transparent
-            );
-            margin-top: 28px;
-        }
-
-        .pie {
-            color: #64748b;
-            font-size: 11px;
-            letter-spacing: 1px;
-            margin-top: 18px;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 480px) {
-            .contador {
-                padding: 30px 22px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            #numero {
-                font-size: 72px;
-            }
-        }
-    </style>
+    <!-- JavaScript externo -->
+    <script src="actions.js" defer></script>
 </head>
 
 <body>
-
     <main class="contador">
 
         <div class="etiqueta">Event Counter</div>
@@ -214,7 +25,6 @@
             para eventos escolares
         </p>
 
-        <!-- Campo para editar el título del evento -->
         <div class="campo-titulo">
             <label for="nuevoTitulo">Título del evento</label>
 
@@ -227,14 +37,12 @@
             >
         </div>
 
-        <!-- Número del contador -->
         <div
             id="numero"
             aria-live="polite"
             aria-atomic="true"
         >0</div>
 
-        <!-- Botones -->
         <div class="botones">
 
             <button id="sumar" type="button">
@@ -253,58 +61,10 @@
 
         <div class="linea"></div>
 
-        <div class="pie">Colegio Bolívar · Eventos</div>
+        <footer class="pie">
+            Colegio Bolívar · Eventos
+        </footer>
 
     </main>
-
-    <script>
-        let clicks = 0;
-
-        const numero = document.getElementById("numero");
-        const mensaje = document.getElementById("mensaje");
-        const tituloEvento = document.getElementById("tituloEvento");
-        const nuevoTitulo = document.getElementById("nuevoTitulo");
-        const botonSumar = document.getElementById("sumar");
-        const botonReiniciar = document.getElementById("reiniciar");
-
-        // Registrar un click
-        function incrementar() {
-            clicks++;
-            actualizarContador();
-        }
-
-        // Reiniciar el contador a cero
-        function reiniciar() {
-            clicks = 0;
-            actualizarContador();
-
-            mensaje.textContent = "El contador se ha reiniciado.";
-        }
-
-        // Actualizar el número y el mensaje
-        function actualizarContador() {
-            numero.textContent = clicks;
-
-            if (clicks === 0) {
-                mensaje.textContent = "¡Listo para comenzar!";
-            } else if (clicks === 1) {
-                mensaje.textContent = "¡Primer click registrado!";
-            } else {
-                mensaje.textContent = clicks + " clicks registrados.";
-            }
-        }
-
-        // Cambiar el título en tiempo real mientras se escribe
-        nuevoTitulo.addEventListener("input", function () {
-            const texto = nuevoTitulo.value.trim();
-
-            tituloEvento.textContent = texto || "Nombre del evento";
-        });
-
-        // Conectar los botones con sus funciones
-        botonSumar.addEventListener("click", incrementar);
-        botonReiniciar.addEventListener("click", reiniciar);
-    </script>
-
 </body>
 </html>
