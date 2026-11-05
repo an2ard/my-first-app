@@ -4,92 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Click Speed Challenge | Colegio Bolívar</title>
+    <title>Click Challenge | Colegio Bolívar</title>
 
     <link rel="stylesheet" href="style.css">
     <script src="actions.js" defer></script>
 </head>
 
 <body>
-    <main class="contador">
 
-        <div class="etiqueta">Click Speed Challenge</div>
+<main class="contador">
 
-        <h1 id="tituloEvento">Colegio Bolívar</h1>
+    <div class="etiqueta">Click Speed Challenge</div>
 
-        <p class="descripcion">
-            ¡Pon a prueba tu velocidad!
-            Registra tantos clicks como puedas.
-        </p>
+    <h1 id="tituloEvento">Colegio Bolívar</h1>
 
-        <!-- Cambiar título del evento -->
-        <div class="campo-titulo">
-            <label for="nuevoTitulo">Título del evento</label>
-            <input
-                type="text"
-                id="nuevoTitulo"
-                placeholder="Escribe el nombre del evento..."
-                value="Colegio Bolívar"
-                maxlength="100"
-            >
-        </div>
+    <p class="descripcion">
+        ¡Pon a prueba tu velocidad y compite por el primer lugar!
+    </p>
 
-        <!-- Seleccionar duración -->
-        <div class="campo-duracion">
-            <label for="duracion">Duración de la partida</label>
+    <!-- Personalizar evento -->
+    <div class="campo">
+        <label for="nuevoTitulo">Nombre del evento</label>
+        <input
+            type="text"
+            id="nuevoTitulo"
+            value="Colegio Bolívar"
+            maxlength="100"
+            placeholder="Nombre del evento"
+        >
+    </div>
 
-            <select id="duracion">
-                <option value="10">10 segundos</option>
-                <option value="20">20 segundos</option>
-                <option value="30">30 segundos</option>
-            </select>
-        </div>
+    <!-- Registro del jugador -->
+    <div class="campo">
+        <label for="nombreJugador">Nombre del jugador</label>
+        <input
+            type="text"
+            id="nombreJugador"
+            maxlength="30"
+            placeholder="Ingresa tu nombre..."
+            autocomplete="name"
+            required
+        >
+    </div>
 
-        <!-- Temporizador -->
-        <div class="seccion-temporizador">
-            <p class="titulo-temporizador">TIEMPO TRANSCURRIDO</p>
+    <!-- Duración -->
+    <div class="campo">
+        <label for="duracion">Duración de la partida</label>
 
-            <div id="temporizador" aria-live="off">
-                0.000 s
-            </div>
-        </div>
+        <select id="duracion">
+            <option value="10">10 segundos</option>
+            <option value="20">20 segundos</option>
+            <option value="30">30 segundos</option>
+        </select>
+    </div>
 
-        <!-- Contador de clicks -->
-        <div class="seccion-contador">
-            <p class="titulo-contador">CLICKS REGISTRADOS</p>
+    <!-- Temporizador -->
+    <section class="panel-tiempo">
+        <p class="etiqueta-panel">TIEMPO TRANSCURRIDO</p>
+        <div id="temporizador">0.000 s</div>
+    </section>
 
-            <div id="numero" aria-live="polite">0</div>
-        </div>
+    <!-- Contador -->
+    <section class="panel-contador">
+        <p class="etiqueta-panel">CLICKS REGISTRADOS</p>
+        <div id="numero">0</div>
+    </section>
 
-        <!-- Botones -->
-        <div class="botones">
+    <!-- Controles -->
+    <div class="botones">
 
-            <button id="sumar" type="button">
-                + Iniciar partida
-            </button>
+        <button id="iniciar" type="button">
+            Iniciar partida
+        </button>
 
-            <button id="reiniciar" type="button">
-                Reiniciar partida
-            </button>
+        <button id="sumar" type="button" disabled>
+            + Registrar click
+        </button>
 
-        </div>
+        <button id="reiniciar" type="button">
+            Reiniciar partida
+        </button>
 
-        <!-- Mensajes y resultados -->
-        <p id="mensaje" role="status" aria-live="polite">
-            Selecciona la duración y presiona iniciar.
-        </p>
+        <button id="verRanking" type="button">
+            🏆 Ver tabla de posiciones
+        </button>
 
-        <div id="resultado" aria-live="polite" hidden>
-            <h2>¡Partida finalizada!</h2>
-            <p id="totalFinal"></p>
-        </div>
+    </div>
+
+    <!-- Mensajes -->
+    <p id="mensaje" role="status" aria-live="polite">
+        Ingresa tu nombre para comenzar.
+    </p>
+
+    <!-- Resultado final -->
+    <section id="resultado" hidden aria-live="polite">
+        <h2>¡Partida finalizada!</h2>
+        <p id="totalFinal"></p>
+        <p id="estadoRecord"></p>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section id="seccionRanking" hidden>
 
         <div class="linea"></div>
 
-        <footer class="pie">
-            Colegio Bolívar · Eventos
-        </footer>
+        <h2>🏆 Tabla de posiciones</h2>
 
-    </main>
+        <p class="descripcion">
+            Los mejores 10 resultados de cada categoría.
+        </p>
+
+        <div class="campo">
+            <label for="categoriaRanking">
+                Seleccionar categoría
+            </label>
+
+            <select id="categoriaRanking">
+                <option value="10">Partidas de 10 segundos</option>
+                <option value="20">Partidas de 20 segundos</option>
+                <option value="30">Partidas de 30 segundos</option>
+            </select>
+        </div>
+
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pos.</th>
+                        <th>Jugador</th>
+                        <th>Clicks</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tablaRanking">
+                    <!-- Se genera dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <p id="mensajeRanking"></p>
+
+        <p class="nota-ranking">
+            Los resultados se guardan en este navegador.
+        </p>
+
+    </section>
+
+    <div class="linea"></div>
+
+    <footer class="pie">
+        Colegio Bolívar · Eventos
+    </footer>
+
+</main>
+
 </body>
 </html>

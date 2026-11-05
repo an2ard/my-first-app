@@ -1,0 +1,475 @@
+/* ========================================
+   CONFIGURACIÓN GENERAL
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(
+        135deg,
+        #050b1e,
+        #0b1735,
+        #10102b
+    );
+
+    color: #f1f5f9;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 20px;
+}
+
+/* ========================================
+   TARJETA PRINCIPAL
+======================================== */
+
+.contador {
+    background: rgba(12, 24, 52, 0.97);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: 24px;
+
+    padding: 40px 30px;
+
+    text-align: center;
+
+    max-width: 480px;
+    width: 100%;
+
+    box-shadow:
+        0 0 25px rgba(0, 229, 255, 0.08),
+        0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+   ENCABEZADOS
+======================================== */
+
+.etiqueta {
+    display: inline-block;
+
+    color: #00e5ff;
+    background: rgba(0, 229, 255, 0.08);
+
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: 20px;
+
+    padding: 7px 14px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 28px;
+    margin: 0 0 12px;
+    overflow-wrap: anywhere;
+}
+
+h2 {
+    color: #00e5ff;
+    font-size: 21px;
+    margin: 20px 0 12px;
+}
+
+.descripcion {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 25px;
+}
+
+/* ========================================
+   CAMPOS
+======================================== */
+
+.campo {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.campo label {
+    display: block;
+    color: #cbd5e1;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    padding: 12px 14px;
+
+    border: 1px solid #334568;
+    border-radius: 10px;
+
+    background: #081329;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: #00e5ff;
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
+}
+
+.campo input::placeholder {
+    color: #64748b;
+}
+
+.campo select {
+    cursor: pointer;
+}
+
+.campo input:disabled,
+.campo select:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   TEMPORIZADOR
+======================================== */
+
+.panel-tiempo {
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+
+    border-radius: 14px;
+    padding: 15px;
+    margin-top: 25px;
+}
+
+.etiqueta-panel {
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0 0 8px;
+}
+
+#temporizador {
+    color: #00e5ff;
+    font-size: 38px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+
+    text-shadow: 0 0 18px rgba(0, 229, 255, 0.3);
+}
+
+/* ========================================
+   CONTADOR
+======================================== */
+
+.panel-contador {
+    margin: 25px 0;
+}
+
+#numero {
+    font-size: 88px;
+    font-weight: 800;
+    line-height: 1.2;
+
+    color: #00e5ff;
+
+    margin: 10px 0;
+
+    text-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   BOTONES
+======================================== */
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+button {
+    width: 100%;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 15px 22px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+button:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+/* Botón iniciar */
+
+#iniciar {
+    background: #00e5ff;
+    color: #04111f;
+
+    box-shadow: 0 0 18px rgba(0, 229, 255, 0.25);
+}
+
+#iniciar:hover:not(:disabled) {
+    background: #65f2ff;
+}
+
+/* Botón registrar click */
+
+#sumar {
+    background: #00e5ff;
+    color: #04111f;
+}
+
+#sumar:hover:not(:disabled) {
+    background: #65f2ff;
+    box-shadow: 0 0 28px rgba(0, 229, 255, 0.45);
+}
+
+/* Botón reiniciar */
+
+#reiniciar {
+    background: #172442;
+    color: #e2e8f0;
+    border: 1px solid #334568;
+}
+
+#reiniciar:hover {
+    background: #223354;
+}
+
+/* Botón ranking */
+
+#verRanking {
+    background: #172442;
+    color: #00e5ff;
+    border: 1px solid rgba(0, 229, 255, 0.35);
+}
+
+#verRanking:hover {
+    background: #223354;
+}
+
+/* ========================================
+   MENSAJES
+======================================== */
+
+#mensaje {
+    color: #94a3b8;
+    font-size: 13px;
+    line-height: 1.5;
+
+    margin: 25px 0 0;
+    min-height: 20px;
+}
+
+/* ========================================
+   RESULTADO FINAL
+======================================== */
+
+#resultado {
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+
+    border-radius: 14px;
+    padding: 18px;
+
+    margin-top: 20px;
+}
+
+#resultado h2 {
+    color: #00e5ff;
+    margin: 0 0 12px;
+}
+
+#resultado p {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+#estadoRecord {
+    color: #00e5ff !important;
+}
+
+/* ========================================
+   LEADERBOARD
+======================================== */
+
+#seccionRanking {
+    margin-top: 20px;
+    animation: aparecer 0.3s ease;
+}
+
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+
+    border: 1px solid #334568;
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 280px;
+}
+
+thead {
+    background: #172442;
+}
+
+th {
+    color: #00e5ff;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 14px 10px;
+}
+
+td {
+    color: #e2e8f0;
+    font-size: 13px;
+    padding: 13px 10px;
+
+    border-top: 1px solid rgba(51, 69, 104, 0.5);
+}
+
+tbody tr:first-child td {
+    color: #facc15;
+    font-weight: 700;
+}
+
+tbody tr:nth-child(2) td {
+    color: #cbd5e1;
+}
+
+tbody tr:nth-child(3) td {
+    color: #d6a47a;
+}
+
+#mensajeRanking {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.nota-ranking {
+    color: #64748b;
+    font-size: 11px;
+    margin-top: 15px;
+}
+
+#seccionRanking[hidden],
+#resultado[hidden] {
+    display: none;
+}
+
+/* ========================================
+   ANIMACIÓN
+======================================== */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   LÍNEA Y PIE
+======================================== */
+
+.linea {
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 229, 255, 0.4),
+        transparent
+    );
+
+    margin-top: 28px;
+}
+
+.pie {
+    color: #64748b;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-top: 18px;
+    text-transform: uppercase;
+}
+
+/* ========================================
+   DISEÑO RESPONSIVO
+======================================== */
+
+@media (max-width: 480px) {
+    .contador {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    #numero {
+        font-size: 72px;
+    }
+
+    #temporizador {
+        font-size: 32px;
+    }
+}
