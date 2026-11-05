@@ -4,30 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Contador de Eventos | Colegio Bolívar</title>
+    <title>Click Speed Challenge | Colegio Bolívar</title>
 
-    <!-- Hoja de estilos externa -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- JavaScript externo -->
     <script src="actions.js" defer></script>
 </head>
 
 <body>
     <main class="contador">
 
-        <div class="etiqueta">Event Counter</div>
+        <div class="etiqueta">Click Speed Challenge</div>
 
         <h1 id="tituloEvento">Colegio Bolívar</h1>
 
         <p class="descripcion">
-            Contador interactivo de clicks<br>
-            para eventos escolares
+            ¡Pon a prueba tu velocidad!
+            Registra tantos clicks como puedas.
         </p>
 
+        <!-- Cambiar título del evento -->
         <div class="campo-titulo">
             <label for="nuevoTitulo">Título del evento</label>
-
             <input
                 type="text"
                 id="nuevoTitulo"
@@ -37,27 +34,55 @@
             >
         </div>
 
-        <div
-            id="numero"
-            aria-live="polite"
-            aria-atomic="true"
-        >0</div>
+        <!-- Seleccionar duración -->
+        <div class="campo-duracion">
+            <label for="duracion">Duración de la partida</label>
 
+            <select id="duracion">
+                <option value="10">10 segundos</option>
+                <option value="20">20 segundos</option>
+                <option value="30">30 segundos</option>
+            </select>
+        </div>
+
+        <!-- Temporizador -->
+        <div class="seccion-temporizador">
+            <p class="titulo-temporizador">TIEMPO TRANSCURRIDO</p>
+
+            <div id="temporizador" aria-live="off">
+                0.000 s
+            </div>
+        </div>
+
+        <!-- Contador de clicks -->
+        <div class="seccion-contador">
+            <p class="titulo-contador">CLICKS REGISTRADOS</p>
+
+            <div id="numero" aria-live="polite">0</div>
+        </div>
+
+        <!-- Botones -->
         <div class="botones">
 
             <button id="sumar" type="button">
-                + Registrar click
+                + Iniciar partida
             </button>
 
             <button id="reiniciar" type="button">
-                Reiniciar contador
+                Reiniciar partida
             </button>
 
         </div>
 
+        <!-- Mensajes y resultados -->
         <p id="mensaje" role="status" aria-live="polite">
-            ¡Listo para comenzar!
+            Selecciona la duración y presiona iniciar.
         </p>
+
+        <div id="resultado" aria-live="polite" hidden>
+            <h2>¡Partida finalizada!</h2>
+            <p id="totalFinal"></p>
+        </div>
 
         <div class="linea"></div>
 
